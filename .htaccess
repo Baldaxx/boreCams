@@ -1,11 +1,19 @@
-RewriteEngine On
-
-# Réécriture pour les fichiers PHP dans le dossier 'page'
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ pages/$1.php [L]
-
 AuthType Basic
-AuthName "Zone Interdite"
-AuthUserFile .htpasswd
+AuthName "Acces restreint"
+AuthUserFile /wamp64/www/boreCams/.htpasswd
 Require valid-user
+
+RewriteEngine On
+DirectoryIndex public/index.php
+
+# Redirige toutes les requêtes pour les fichiers php dans 'public/pages' comme si elles étaient à la racine.
+RewriteCond %{REQUEST_URI} !public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ public/pages/$1.php [NC,L]
+
+# Si la requête est pour la racine, servir 'public/index.php'.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ public/index.php [QSA,L]
+
