@@ -14,10 +14,15 @@ include '../common/nav.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["hauteur"])) {
     $hauteur = intval($_POST["hauteur"]);
     echo "<div class=\"pyramide\">";
-    for ($ligne = 1; $ligne <= $hauteur; $ligne++) {
-        echo str_repeat("xx", $ligne) . "<br>";
+    $txt = "";
+    for ($i = 0; $i < $hauteur; $i++) {
+        $txt .= "xx";
+        echo $txt . "<br>";
     }
-    echo "</div>";
+    for ($i = 0; $i < $hauteur - 1; $i++) {
+        $txt = substr($txt, 0, -2);
+        echo $txt . "<br>";
+    }
 }
 ?>
 

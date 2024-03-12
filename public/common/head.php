@@ -12,6 +12,6 @@
 <body>
     <header class="container-fluid bg-body-tertiary m-0">
         <div class="row p-3 text-center">
-            <div class="col-2 m-auto"><img src="../../img/logo.png" alt="logo php" class="w-100"></div>
+            <div class="col-2 m-auto"><img src="./img/logo.png" alt="logo php" class="w-100"></div>
         </div>
     </header>
